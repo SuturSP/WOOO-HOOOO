@@ -1,4 +1,5 @@
 import xml.etree.ElementTree as etree
+import unittest
 
 
 class Corpus:
@@ -48,3 +49,19 @@ for sentence in root.iter("sentence"):
             y.append(slov)
     predlog._wordforms = y
     crp._sentences.append(predlog)
+
+
+class Tests(unittest.TestCase):
+
+    def test_pp(self):
+        self.assertIn("Великолепная «Школа злословия» вернулась в эфир после", crp.pp(2).stroka)
+
+    def test_ps(self):
+        self.assertEqual(crp._sentences[2].ps(1).gg, "Школа")
+
+    def test_pg(self):
+        self.assertEqual(crp._sentences[2]._wordforms[1].pg(3), "л")
+
+
+if __name__ == '__main__':
+    unittest.main()
