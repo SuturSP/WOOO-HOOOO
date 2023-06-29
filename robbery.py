@@ -5,19 +5,18 @@ class Civilian:
 
 
 class Robber:
+
     def __init__(self, name, richness):
         self.name = name
         self.richness = richness
+
+    def robbery(self, b):
+        self.richness += b.wealth
+        b.wealth = 0
 
 
 Robert = Civilian("Robert", 50)
 Anthony = Robber("Anthony", 3)
 
-
-def robbery(a, b):
-    a.richness += b.wealth
-    b.wealth = 0
-
-
-robbery(Anthony, Robert)
+Anthony.robbery(Robert)
 print(Anthony.richness)
